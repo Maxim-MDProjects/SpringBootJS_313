@@ -33,7 +33,7 @@
 		<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<form id="editUserForm">
-					<input type="hidden" name="id" id="id" />
+					<input type="hidden" name="id" id="idEdit" />
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
@@ -44,15 +44,15 @@
 						<div class="modal-body">
 							<div class="form-group">
 								<label class="control-label">User's Name:</label>
-								<input class="form-control" name="name" type="text" id="name" />
+								<input class="form-control" name="name" type="text" id="nameEdit" />
 							</div>
 							<div class="form-group">
 								<label class="control-label">User's Email:</label>
-								<input class="form-control" name="email" type="email" id="email" />
+								<input class="form-control" name="email" type="email" id="emailEdit" />
 							</div>
 							<div class="form-group">
 								<label class="control-label">User's Password:</label>
-								<input class="form-control" name="password" type="password" />
+								<input class="form-control" name="password" type="password" id="passwordEdit" />
 							</div>
 							<div class="form-group">
 								<select multiple size="3" type="role" name="role" class="form-control" id="editFormControlSelect">
@@ -134,10 +134,10 @@
 					<div class="table-responsive">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" data-toggle="tab" href="#adminTable" role="tab" aria-controls="home">User Table</a>
+								<a class="nav-link active" id="table-tab" data-toggle="tab" href="#adminTable" role="tab" aria-controls="home">User Table</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#newUser" role="tab" aria-controls="new">New User</a>
+								<a class="nav-link" data-toggle="tab" href="#newUser" role="tab" aria-controls="new" onclick="cleanForm()">New User</a>
 							</li>
 							<!--
                                <li class="nav-item">
@@ -308,7 +308,7 @@
 								<div class="tab-content">
 									<div class="container">
 										<div class="row justify-content-center align-items-center">
-											<form class="form-horizontal" action="/admin/add" method="post">
+											<form class="form-horizontal" id="newUserForm">
 												<div class="form-group">
 													<label class="control-label">User's Name:</label>
 													<input class="form-control" id="nameAdd" type="text" name="name" required />
