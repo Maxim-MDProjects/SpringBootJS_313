@@ -8,10 +8,6 @@ import javax.persistence.*;
 // Этот класс реализует интерфейс GrantedAuthority, в котором необходимо переопределить только один метод getAuthority()
 // (возвращает имя роли).
 // Имя роли должно соответствовать шаблону: «ROLE_ИМЯ», например, ROLE_USER.
-/*
-INSERT INTO roles_v01 VALUES (1, 'ROLE_USER');
-INSERT INTO roles_v01 VALUES (2, 'ROLE_ADMIN');
- */
 @Entity
 @Table(name = "roles_v1")
 public class Role implements GrantedAuthority {
@@ -53,3 +49,8 @@ public class Role implements GrantedAuthority {
         return role;
     }
 }
+
+/*
+INSERT INTO roles_v01 VALUES (1, 'ROLE_USER');
+INSERT INTO roles_v01 VALUES (2, 'ROLE_ADMIN');
+ */

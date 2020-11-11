@@ -3,23 +3,11 @@ package web.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-//import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
-/*
-INSERT INTO roles VALUES (1, 'ROLE_USER');
-INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
 
-INSERT INTO users_v1 VALUES (1, 'admin@admin.ru', 'admin', '$2a$10$1UwCRKa/yF/o2qsJ8NqrfeuUa3p1g4WLSEH.ZGQGvZBcLI59f56xy');
-INSERT INTO user_roles_v1 VALUES (1, 2);
-
-
-INSERT INTO users VALUES (2, 'admin1', 'admin1');
-INSERT INTO user_roles VALUES (2, 2);
-*/
 @Entity
 @Table(name = "users_v1")
 public class User implements UserDetails {
@@ -50,13 +38,8 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     /*
-    @ManyToMany(cascade=CascadeType.MERGE)
-    @JoinTable(
-       name="user_role",
-       joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-       inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
-    private List<Role> roles;
-     */
+    @ManyToMany(cascade=CascadeType.MERGE)@JoinTable(name="user_role",joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})private List<Role> roles;
+    */
     public User() {
     }
 
@@ -120,7 +103,6 @@ public class User implements UserDetails {
     }
 
 //+---------------------
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
@@ -151,3 +133,15 @@ public class User implements UserDetails {
         return true;
     }
 }
+
+/*
+INSERT INTO roles VALUES (1, 'ROLE_USER');
+INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
+
+INSERT INTO users_v1 VALUES (1, 'admin@admin.ru', 'admin', '$2a$10$1UwCRKa/yF/o2qsJ8NqrfeuUa3p1g4WLSEH.ZGQGvZBcLI59f56xy');
+INSERT INTO user_roles_v1 VALUES (1, 2);
+
+
+INSERT INTO users VALUES (2, 'admin1', 'admin1');
+INSERT INTO user_roles VALUES (2, 2);
+*/

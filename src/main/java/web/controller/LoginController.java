@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @GetMapping(value = "/")
     public String PageHome() {
-        return "login";
+        return "redirect:/login";
     }
 
     @GetMapping(value = "/login")
     public String loginPage() {
-        return "login";
+        return "redirect:/login";
     }
 
     @GetMapping(value = "/accessDenied")
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        return "accessDenied";
+        return "redirect:/accessDenied";
     }
 
     private String getPrincipal(){
