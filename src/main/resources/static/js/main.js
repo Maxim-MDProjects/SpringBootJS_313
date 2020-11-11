@@ -57,6 +57,7 @@ function updateUser() {
     })
     const rolesSend = roles.substr(0, roles.length - 1);
     const jsonVar = {
+        id: document.getElementById("idEdit").value,
         name: document.getElementById("nameEdit").value,
         email: document.getElementById("emailEdit").value,
         password: document.getElementById("passwordEdit").value

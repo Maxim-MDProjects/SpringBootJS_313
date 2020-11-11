@@ -80,13 +80,12 @@ public class RestTest {
         user.setRoles(rolesArray);
 
         if (user.getPassword().isEmpty() || user.getPassword() == null) {
-            Optional<User> newUser = userService.getUserByName(user.getName());
+            Optional<User> newUser = userService.getById(user.getId());
             user.setPassword(newUser.get().getPassword());
         } else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
 
-        userService.edit(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
