@@ -68,7 +68,7 @@ function editUser(o) {
 function getUser() {
     $("#userInfo > tbody").empty();
     const id = document.getElementById("userId").value;
-    const url = 'http://localhost:8081/adminrest/user/' + id
+    const url = 'http://localhost:8089/adminrest/user/' + id
     fetch(url)
         .then((response) => {
             response.json().then((data) => {
@@ -103,29 +103,19 @@ function deleteRow(o) {
                 $('#idDelete').val(data.id);
                 $('#nameDelete').val(data.name);
                 $('#emailDelete').val(data.email);
-                /*$('#emailDelete').val(data.email);
-                $('#ageDelete').val(data.age);
-                const roles = data.roles;
-                console.log(roles);
-                let newRoles = [];
-                $('#newRoles option').each(function () {
-                    newRoles[$(this).val()] = $(this).val();
-                });
-                console.log(newRoles)
+                const roles = data.authorities;
                 roles.forEach(function (item) {
-                    if (newRoles.includes(String(item.id))) {
-                        $('#deleteFormControlSelect option[id=' + String(Number(item.id + 2)) + ']').prop('selected', true);
-                    }
-                })*/
+                    $('#deleteUserForm option[value=' + item.role + ']').prop('selected', true);
+                })
             });
         });
 }
 
 function deleteUser() {
-    const url = 'http://localhost:8081/adminrest/delete/' + userId;
+    const url = 'http://localhost:8089/adminrest/delete/' + userId;
     console.log('url='+url)
     fetch(url, {
-        method: 'DELETE',
+        method: 'GET',
     })
         .then(res => res.text())
         .then(res => console.log(res))
@@ -161,7 +151,7 @@ function updateUser() {
         email: document.getElementById("emailEdit").value,
         password: document.getElementById("editInputPassword").value*/
     };
-    const response = fetch('http://localhost:8081/api/admin/edit' + roles1, {
+    const response = fetch('http://localhost:8089/api/admin/edit' + roles1, {
         method: 'PUT',
         body: JSON.stringify(jsonVar),
         headers: {
@@ -175,19 +165,19 @@ function updateUser() {
 
 function addUser() {
     let roles = '?roles=';
-    const newRoles = $('#newRoles').val();
+    const newRoles = $('#roleAdd').val();
+    console.log(newRoles);
     newRoles.forEach(function (item) {
         roles += item + ',';
     })
     const roles1 = roles.substr(0, roles.length - 1);
     let jsonVar = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        age: document.getElementById("age").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("exampleInputPassword1").value
+        name: document.getElementById("nameAdd").value,
+        email: document.getElementById("emailAdd").value,
+        password: document.getElementById("passwordAdd").value
     };
-    const response = fetch('http://localhost:8081/api/admin/users' + roles1, {
+    console.log(jsonVar)
+    const response = fetch('http://localhost:8089/adminrest/add' + roles1, {
         method: 'POST',
         body: JSON.stringify(jsonVar),
         headers: {
@@ -195,9 +185,9 @@ function addUser() {
         }
     });
     alert("успешно");
-    document.getElementById('table-tab').click();
+    document.getElementById('v-pills-admin-tab').click();
     $("#usersTable > tbody").empty();
-    printUsers();
+    fillUserTable();
 }
 
 let userId;

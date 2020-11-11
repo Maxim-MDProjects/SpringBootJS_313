@@ -32,9 +32,7 @@
 		<!-- modal edit-->
 		<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
-<!--				<form th:action="@{/admin/edit}" method="post">-->
 				<form id="editUserForm">
-					<!--<input type="hidden" name="id" th:value="*{user.id}" />-->
 					<input type="hidden" name="id" id="id" />
 					<div class="modal-content">
 						<div class="modal-header">
@@ -59,15 +57,9 @@
 							<div class="form-group">
 								<select multiple size="3" type="role" name="role" class="form-control" id="editFormControlSelect">
 									<label class="control-label">User's Role:</label>
-
 									<option value="ROLE_ADMIN">ROLE_ADMIN</option>
 									<option value="ROLE_USER">ROLE_USER</option>
 								</select>
-								<!--<select class="form-control" id="editFormControlSelect" name="newRoles" multiple="multiple" >
-									<option selected="selected" value="ROLE_NONE">-&#45;&#45;</option>
-									<option value ="1" id="1">ROLE_USER</option>
-									<option value ="2" id="2">ROLE_ADMIN</option>
-								</select>-->
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -102,12 +94,11 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">User's Password:</label>
-								<input class="form-control" name="password" type="password" id="password" readonly/>
+								<input class="form-control" name="password" type="password" id="passwordDelete" readonly/>
 							</div>
 							<div class="form-group">
 								<select multiple size="3" type="role" name="role" class="form-control" readonly>
 									<label class="control-label">User's Role:</label>
-									<option selected="selected" value="ROLE_NONE">-&#45;&#45;</option>
 									<option value="ROLE_ADMIN">ROLE_ADMIN</option>
 									<option value="ROLE_USER">ROLE_USER</option>
 								</select>
@@ -320,25 +311,25 @@
 											<form class="form-horizontal" action="/admin/add" method="post">
 												<div class="form-group">
 													<label class="control-label">User's Name:</label>
-													<input class="form-control" type="text" name="name" required />
+													<input class="form-control" id="nameAdd" type="text" name="name" required />
 												</div>
 												<div class="form-group">
 													<label class="control-label">User's Email:</label>
-													<input class="form-control" type="email" name="email" />
+													<input class="form-control" id="emailAdd" type="email" name="email" />
 												</div>
 												<div class="form-group">
 													<label class="control-label">User's Password:</label>
-													<input class="form-control" type="password" name="password" required />
+													<input class="form-control" id="passwordAdd" type="password" name="password" required />
 												</div>
 												<div class="form-group">
-													<select multiple size="2" name="role" class="form-control">
+													<select multiple size="2" id="roleAdd" name="role" class="form-control">
 														<label class="control-label">User's Role:</label>
 														<option value="ROLE_ADMIN">ROLE_ADMIN</option>
 														<option selected="selected" value="ROLE_USER">ROLE_USER</option>
 													</select>
 												</div>
 												<div>
-													<button type="submit" class="btn btn-success">Add</button>
+													<button type="button" class="btn btn-success" onclick="addUser()">Add</button>
 												</div>
 											</form>
 										</div>
